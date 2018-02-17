@@ -1,0 +1,29 @@
+#! /bin/bash
+
+prefixes=$(ls ~/.PlayOnLinux/wineprefix -w 0)
+
+chosen=$(zenity --list --text="Select Virtual PoL Drive" --column="Wineprefix" $prefixes)
+
+path="$HOME/.PlayOnLinux/wineprefix/$chosen"
+cfg="$path/playonlinux.cfg"
+arch=$(grep -e "ARCH=" $cfg)
+
+echo $arch
+
+if [ $arch == "ARCH=x86" ]; then
+  steampath="$path/drive_c/Program Files/Steam"
+  export WINEARCH=win32
+elif [ $arch == "ARCH=amd64" ]; then
+  steampath="$path/drive_c/Program Files (x86)/Steam"
+  export WINEARCH=win64
+else
+  zenity --error --text="Could not detect architecture." --no-wrap
+  exit
+fi
+
+cd "$steampath"
+export WINEPREFIX=$path
+
+$appid=$(zenity --entry --text="Enter Steam AppID")
+
+wine "Steam.exe" -applaunch $appid
