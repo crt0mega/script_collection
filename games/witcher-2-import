@@ -1,0 +1,28 @@
+#!/bin/bash
+
+tw1dir="$(xdg-user-dir DOCUMENTS)/The Witcher"
+tw2dir="$HOME/.local/share/cdprojektred/witcher2/GameDocuments/The Witcher"
+
+if [ ! -d "$tw1dir" ]
+then
+	zenity --error --text="Could not locate old savegames at $tw1dir." --no-wrap 
+	exit
+fi
+
+if [ -d "$tw2dir" ]
+then
+	zenity --error --text="Symbolic link $tw2dir already exists." --no-wrap 
+	exit
+fi
+
+ln "$tw1dir" "$tw2dir" --symbolic
+
+if [ ! $? -eq 0 ]
+then
+	zenity --error --text="Could not create symbolic link $tw2dir." --no-wrap
+else
+	zenity --info --text="Symbolic link $tw2dir successfully created.\nYou can now import your Witcher 1 savegames." --no-wrap
+fi
+
+
+
