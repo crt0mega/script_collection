@@ -15,7 +15,9 @@
 #MCLK_DOWN_HYST MCLK_ACTIVE_LEVEL"
 
 if [ "$(id -u)" != "0" ]; then
-  pkexec $0
+  #pkexec $0
+  gksudo $0
+  exit
 fi
 
 CARD="card0"
