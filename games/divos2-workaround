@@ -2,7 +2,6 @@
 
 # Divinity: Original Sin Workaround for Proton
 
-# Collect par
 div2path="$(find ~ -name "SteamApps" -type d 2>/dev/null)/common/Divinity Original Sin 2"
 
 if ! [ -d "$div2path" ]; then
@@ -26,13 +25,10 @@ else
  if zenity --question --text="Game located at $div2path. Apply workaround?" --title="Last chance" --width=384 ; then
   mv "$div2path/bin" "$div2path/bin.bak"
   ln -s "$div2path/DefEd/bin" "$div2path/bin"
-  mv "$div2path/bin/SupportTool.exe" "$div2path/bin/SupportTool.bak "
+  mv "$div2path/bin/SupportTool.exe" "$div2path/bin/SupportTool.bak"
   ln -s "$div2path/bin/EoCApp.exe" "$div2path/bin/SupportTool.exe"
  else
- exit
+  exit
  fi
 
 fi
-
-
-
