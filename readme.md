@@ -4,6 +4,8 @@
 
 Trigger warning: Most of them need "zenity" to be installed.
 
+- games/divos2-workaround
+  - Creates symlinks so Divinity: Original Sin 2 can be played with proton
 - games/witcher-2-import
   - Creates a symlink to your The Witcher savegames, allowing the Linux version of The Witcher 2 to import these.
 - hardware/zwattman.sh
