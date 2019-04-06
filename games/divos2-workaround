@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Divinity: Original Sin Workaround for Proton
+
+# Collect par
+div2path="$(find ~ -name "SteamApps" -type d 2>/dev/null)/common/Divinity Original Sin 2"
+
+if ! [ -d "$div2path" ]; then
+ zenity --error --text="$div2path not found" --title="Path not found" --width=384
+ exit
+fi
+
+if [ -d "$div2path/bin.bak" ]; then
+
+ if zenity --question --text="Workaround has already been applied. Undo?" --title="Already done" --width=384; then
+  rm "$div2path/bin/SupportTool.exe"
+  mv "$div2path/bin/SupportTool.bak" "$div2path/bin/SupportTool.exe"
+  rm "$div2path/bin"
+  mv "$div2path/bin.bak" "$div2path/bin"
+ else
+  exit
+ fi
+
+else
+
+ if zenity --question --text="Game located at $div2path. Apply workaround?" --title="Last chance" --width=384 ; then
+  mv "$div2path/bin" "$div2path/bin.bak"
+  ln -s "$div2path/DefEd/bin" "$div2path/bin"
+  mv "$div2path/bin/SupportTool.exe" "$div2path/bin/SupportTool.bak "
+  ln -s "$div2path/bin/EoCApp.exe" "$div2path/bin/SupportTool.exe"
+ else
+ exit
+ fi
+
+fi
+
+
+
