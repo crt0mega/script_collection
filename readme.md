@@ -1,5 +1,9 @@
 # script_collection
 
+# Deprecation notice
+
+I'm moving away from GitHub. You will find this [repository](https://git.c-r-t.tk/crt0mega/script_collection) at my [Gitea](https://git.c-r-t.tk/crt0mega).
+
 ## 0mega's collection of somehow linux gaming related scripts
 
 Trigger warning: Most of them need "zenity" to be installed.
